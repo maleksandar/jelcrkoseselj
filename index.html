@@ -29,7 +29,14 @@
 
   <!-- Meta Tags Generated with https://metatags.io -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-  <style>
+  <style>                                                             CSS
+    @font-face {
+      font-family: 'Miroslav';
+      src: url('./font/miroslav.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -194,6 +201,7 @@
     }
 
     h1 {
+      font-family: 'Miroslav', 'Georgia', 'Times New Roman', serif;
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
@@ -210,8 +218,8 @@
 
     .knjiga {
       position: absolute;
-      max-width: 100%;
-      max-height: 80%;
+      max-width: 90%;
+      max-height: 90%;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
     }
 
