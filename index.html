@@ -29,7 +29,14 @@
 
   <!-- Meta Tags Generated with https://metatags.io -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-  <style>
+  <style>                                                             CSS
+    @font-face {
+      font-family: 'Miroslav';
+      src: url('./font/miroslav.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -194,21 +201,26 @@
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-family: 'Miroslav', 'Georgia', 'Times New Roman', serif;
+      font-size: 2rem;
       font-weight: bold;
       text-align: center;
-      color: white;
-      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+      color: transparent;
+      text-shadow: 0 0 1px #ffeaba, 1px 1px 2px rgba(0, 0, 0, 0.75);
       padding: 2rem;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      max-width: 90%;
+      max-width: 50%;
       line-height: 1.4;
-      animation: fadeIn 1s ease-in;
       position: relative;
       z-index: 10;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .knjiga {
+      position: absolute;
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
     }
 
     @keyframes fadeIn {
@@ -225,8 +237,8 @@
 
     @media (max-width: 768px) {
       h1 {
-        font-size: 2rem;
         padding: 1.5rem;
+        max-width: 70%;
       }
     }
   </style>
@@ -234,6 +246,7 @@
 
 <body id="bodyElement">
   <h1 id="odgovor">Hello World</h1>
+  <img id="knjigaSlika" class="knjiga" src="img/knjiga.jpg" alt="Knjiga Šešeljeva">
 </body>
 
 <script>
@@ -244,44 +257,42 @@
   ];
 
   const negativniOdgovori = [
-    "Čekamo. Svi čekamo.",
-    "Đavo ga čuva za sebe.",
-    "Govno ni da se zakašlje.",
-    "Greje mu se sanduk.",
-    "I danas pobegao s lopate.",
-    "Ima puls, jebi ga.",
-    "Još diše, na opštu žalost.",
-    "Još jedan dan bez lepih vesti.",
-    "Još jedan dan bez pravde.",
-    "Još mrda, jebiga.",
-    "Još se drži svinja.",
-    "Mater mu jebem, nije.",
-    "Na aparatima je. (Državnim.)",
-    "Na pola puta do zoohigijene.",
-    "Nažalost ne.",
-    "Nažalost, ne.",
-    "Nažalost, preživeo i ovaj dan.",
-    "Nažalost, još u upotrebi.",
-    "Ne da se skot.",
-    "Ne.",
-    "Ni danas nije crk'o udbaš.",
-    "Ni danas nije taj praznik.",
-    "Ni smrt ga neće.",
-    "Ni zemlja ne pokazuje interesovanje.",
-    "Ni đavo ga ne zove.",
-    "Nije.",
-    "Nije, al' blizu je. (Već 20 godina)",
-    "Nije, al' proveravamo na svakih 5 minuta.",
-    "Nije, ali pratimo situaciju.",
-    "Nije. Džaba rifrešuješ stranicu.",
-    "Nije. Eno ga seje smrt po televiziji.",
-    "Nije. Ni rak ga neće.",
-    "Nije još.",
-    "Nije još, 'usta ga jebem žvalava!",
-    "Smrt opet zakazala.",
-    "Što pitaš? Nadaš se? Svi se nadamo.",
-    "Vesti ostaju crne: živ je.",
-    "Živ još uvek."
+    "Чекамо. Сви чекамо",
+    "Ђаво га чува за себе",
+    "Говно ни да се закашље",
+    "И данас побегао с лопате",
+    "Има пулс, јеби га",
+    "Још дише, на општу жалост",
+    "Још један дан без лепих вести",
+    "Још један дан без правде",
+    "Још мрда, јеби га",
+    "Још се држи свиња",
+    "Матер му јебем, није",
+    "На апаратима је (Државним)",
+    "На пола пута до зоохигијене",
+    "Нажалост, не",
+    "Нажалост, преживео и овај дан",
+    "Нажалост, још у употреби",
+    "Не да се скот",
+    "Не",
+    "Ни данас није црк'о удбаш",
+    "Ни данас није тај празник",
+    "Ни смрт га неће",
+    "Ни земља не показује интересовање",
+    "Ни ђаво га не зове",
+    "Није",
+    "Није, ал' близу је. (Већ 20 година)",
+    "Није, ал' проверавамо на сваких 5 минута",
+    "Није, али пратимо ситуацију",
+    "Није. Џаба рифрешујеш страницу",
+    "Није. Ено га сеје смрт по телевизији",
+    "Није. Ни рак га неће",
+    "Није још",
+    "Није још, 'уста га јебем жвалава!",
+    "Смрт опет заказала",
+    "Што питаш? Надаш се? Сви се надамо",
+    "Вести остају црне: жив је",
+    "Жив још увек"
   ];
 
   const odgovor = mrtav ? pozitivniOdgovori[Math.floor(Math.random() * pozitivniOdgovori.length)] : negativniOdgovori[Math.floor(Math.random() * negativniOdgovori.length)];
@@ -384,6 +395,25 @@
     }
 
     createRainDrops();
+  }
+
+  const h1Naslov = document.getElementById("odgovor");
+  const imgKnjiga = document.getElementById("knjigaSlika");
+
+  function azurirajSirinuNaslova() {
+    const sirinaSlike = imgKnjiga.offsetWidth;
+
+    if (sirinaSlike > 0) {
+      h1Naslov.style.maxWidth = sirinaSlike + 'px';
+    }
+  }
+
+  imgKnjiga.addEventListener('load', azurirajSirinuNaslova);
+
+  window.addEventListener('resize', azurirajSirinuNaslova);
+
+  if (imgKnjiga.complete && imgKnjiga.offsetWidth > 0) {
+    azurirajSirinuNaslova();
   }
 </script>
 
